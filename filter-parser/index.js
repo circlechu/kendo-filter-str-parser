@@ -96,11 +96,12 @@ const toLodash = (filter) => {
 }
 
 const toLodashFn = (filter) => { 
+    if(typeof(filter)==="undefined") return null;
     const query=toLodash(filter);
     // return eval(`x=>{
     //     return ${query}
     // }`);
-    return new Function('x', `return ${query}`);
+    return new Function('x', 'moment', `return ${query}`);
 }
 export {
     toSQL,
