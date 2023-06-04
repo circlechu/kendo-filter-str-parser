@@ -1,7 +1,7 @@
 import * as FilterConverter from './filter-parser/index.js';
 import _ from 'lodash';
 import moment from 'moment';
-import data from './json/data.json' assert {type:'json'};
+import data from './integration/json/data.json' assert {type:'json'};
 
 let filters=[];
 let filter="(ProductID~eq~1~and~FirstOrderedOn~eq~datetime'2020-01-01T05:00:00.000Z')";

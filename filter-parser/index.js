@@ -97,9 +97,10 @@ const toLodash = (filter) => {
 
 const toLodashFn = (filter) => { 
     const query=toLodash(filter);
-    return eval(`x=>{
-        return ${query}
-    }`);
+    // return eval(`x=>{
+    //     return ${query}
+    // }`);
+    return new Function('x', `return ${query}`);
 }
 export {
     toSQL,
