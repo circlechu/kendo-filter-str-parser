@@ -1,4 +1,4 @@
-import parseFilterExpression from './filter-parser'
+import * as FilterConverter from './filter-parser'
 import _ from 'lodash';
 const cases=[
     {
@@ -27,7 +27,7 @@ _(cases).forEach(c=>{
     const {filter,result}=c;
     
     test(`parse '${filter}' to sql`,()=>{
-        const testResult=parseFilterExpression(filter);
+        const testResult=FilterConverter.toSQL(filter);
         console.log(testResult);
         expect(testResult).toBe(result);
     });
