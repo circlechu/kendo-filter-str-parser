@@ -18,11 +18,9 @@ filter="(FirstOrderedOn~gt~datetime'2023-03-30T04:00:00.000Z'~and~FirstOrderedOn
 filters.push(filter);
 
 const testcases=_(filters).map((filterStr)=>{
-    const result=FilterConverter.toLodash(filterStr);
-    // const filterFun=eval(`x=>{
-    //     return ${query}
-    // }`);
-    // const result=_(data).filter(x=>filterFun(x)).map(d=>d.ProductID).join(',')
+    const filterFun=FilterConverter.toLodashFn(filterStr);
+    
+    const result=_(data).filter(x=>filterFun(x)).map(d=>d.ProductID).join(',')
     return {
         filter:filterStr,
         result

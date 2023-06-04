@@ -2,6 +2,7 @@ import moment from "moment";
 import _ from 'lodash';
 
 const toSQL = (filter) => { // 替换~为相应的操作符
+    if(typeof(filter)==="undefined") return null;
     filter = filter.replace(/~eq~/g, ' = ');
     filter = filter.replace(/~neq~/g, ' <> ');
     filter = filter.replace(/~gt~/g, ' > ');
@@ -18,7 +19,7 @@ const toSQL = (filter) => { // 替换~为相应的操作符
 
     // datetime type
     filter = filter.replace(/datetime'([^']+)'/gi, (text,s1)=>{
-        return moment(s1,'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+        return `'${moment(s1,'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')}'`;
     });
 
     // 匹配最内层的括号表达式
@@ -36,6 +37,7 @@ const toSQL = (filter) => { // 替换~为相应的操作符
 }
 
 const toLodash = (filter) => { 
+    if(typeof(filter)==="undefined") return null;
     // 替换~为相应的操作符
     // datetime type
 
@@ -93,7 +95,14 @@ const toLodash = (filter) => {
     return convertExpressionToSQL(filter);
 }
 
+const toLodashFn = (filter) => { 
+    const query=toLodash(filter);
+    return eval(`x=>{
+        return ${query}
+    }`);
+}
 export {
     toSQL,
-    toLodash
+    toLodash,
+    toLodashFn
 };
