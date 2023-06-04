@@ -18,7 +18,7 @@ const cases=[
         "result": "(FirstOrderedOn = '2023-06-03T04:00:00.000Z' AND ProductID = 1)"
     },
     {
-        "filter": "(FirstOrderedOn~gte~'2023-06-03T04:00:00.000Z'~and~ProductID~eq~1)",
+        "filter": "(ProductID~eq~2~and~FirstOrderedOn~eq~datetime'2023-06-05T00-00-00')",
         "result": "(FirstOrderedOn >= '2023-06-03T04:00:00.000Z' AND ProductID = 1)"
     }
 ]
