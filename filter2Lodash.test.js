@@ -1,4 +1,4 @@
-import * as FilterConverter from './filter-parser'
+import {toLodash} from './filter-parser'
 import _ from 'lodash';
 const cases=[
     {
@@ -47,7 +47,7 @@ _(cases).forEach(c=>{
     const {filter,result}=c;
     
     test(`parse '${filter}' to lodash`,()=>{
-        const testResult=FilterConverter.toLodash(filter);
+        const testResult=toLodash(filter);
         console.log(testResult);
         expect(testResult).toBe(result);
     });

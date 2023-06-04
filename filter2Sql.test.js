@@ -1,4 +1,4 @@
-import * as FilterConverter from './filter-parser'
+import {toSQL} from './filter-parser'
 import _ from 'lodash';
 const cases=[
     {
@@ -27,7 +27,7 @@ _(cases).forEach(c=>{
     const {filter,result}=c;
     
     test(`parse '${filter}' to sql`,()=>{
-        const testResult=FilterConverter.toSQL(filter);
+        const testResult=toSQL(filter);
         console.log(testResult);
         expect(testResult).toBe(result);
     });
